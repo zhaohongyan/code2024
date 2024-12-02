@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table layout</title>
+    <link rel="stylesheet" href="./common.css" />
+    <style>
+        .layout-table {
+            width: 100%;
+            /* 必须加这句，宽度才生效 */
+            table-layout: fixed; 
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <table class="layout-table">
+        <tbody>
+            <tr>
+                <td class="left">left</td>
+                <td class="middle">middle</td>
+                <td class="right">right</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+

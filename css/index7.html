@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>change theme</title>
+    <style>
+        :root {
+            --primary-color: #000;
+            --bg-color: #fff;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            font-size: 24px;
+            text-align: center;
+            color: var(--primary-color);
+            background-color: var(--bg-color);
+            border: 1px solid #000;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">box</div>
+    <button id="btn">change color</button>
+
+    <script>
+        const btn = document.getElementById('btn');
+        let theme = 'sun';
+        btn.addEventListener('click', () => {
+            if (theme === 'sun') {
+                theme = 'night'
+                document.documentElement.style.setProperty('--primary-color', '#fff')
+                document.documentElement.style.setProperty('--bg-color', '#000')
+            } else {
+                theme = 'sun'
+                document.documentElement.style.setProperty('--primary-color', '#000')
+                document.documentElement.style.setProperty('--bg-color', '#fff')
+            }
+        })
+
+    </script>
+</body>
+</html>

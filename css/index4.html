@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>grid布局</title>
+		<link rel="stylesheet" href="./common.css" />
+		<style>
+			.container {
+				display: grid;
+				grid-template-columns: 200px 1fr 300px;
+				grid-template-areas: "left middle right";
+			}
+			.left {
+				grid-area: left;
+			}
+
+			.middle {
+				grid-area: middle;
+			}
+			.right {
+				grid-area: right;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="left">left</div>
+			<div class="middle">middle</div>
+			<div class="right">right</div>
+		</div>
+	</body>
+</html>
