@@ -1,6 +1,3 @@
-const isComplexDataType = (obj) =>
-	(typeof obj === "object" || typeof obj === "function") && (obj !== null);
-
 const deepClone = function (obj, hash = new WeakMap()) {
 	if (obj.constructor === Date) {
 		return new Date(obj);
@@ -21,7 +18,7 @@ const deepClone = function (obj, hash = new WeakMap()) {
 	hash.set(obj, cloneObj);
 
 	for (let key of Reflect.ownKeys(obj)) {
-		if (isComplexDataType(obj[key]) && typeof obj[key] !== "function") {
+		if (typeof obj[key] === "object" && obj[key] !== null) {
 			cloneObj[key] = deepClone(obj[key], hash);
 		} else {
 			cloneObj[key] = obj[key];

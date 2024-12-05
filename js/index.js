@@ -1,4 +1,4 @@
-// 1.如何让 obj== 1 && obj == 2 && obj == 3 
+// 1.如何让 obj== 1 && obj == 2 && obj == 3
 // let obj = {
 //     value: 0,
 //     valueOf:function () {
@@ -28,3 +28,33 @@
 // console.log(getType(() => {}))
 // console.log(getType(/123/g))
 // console.log(getType(window))
+
+// let i = 0;
+// let timer;
+// let fn = () => {
+// 	timer = setTimeout(() => {
+// 		i++;
+// 		console.log(i);
+//         if(i < 10) {
+//             fn()
+//         } else {
+//             clearTimeout(timer)
+//         }
+// 	}, 1000);
+// };
+// fn()
+
+function *gen() {
+    console.log('enter')
+    let a = yield 1;
+    let b = yield (function(){return 2})()
+    console.log('==', a, b)
+    return 3
+}
+
+let g = gen(); // 程序阻塞住，不会执行任何语句
+console.log(typeof g) // 'object'
+console.log(g.next())
+console.log(g.next())
+console.log(g.next())
+console.log(g.next()) // {value: undefined, done: true}

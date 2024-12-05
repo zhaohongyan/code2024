@@ -3,6 +3,7 @@
 现在找工作真的挺难的的，面试机会很少，所以如果机会来了，一定要抓住了！！！
 
 一定一定得好好复习
+- 2024.11.25 面试携程，资深前端工程，面试失败
 
 ## css
 - [三栏布局之圣杯布局](./css/index1.html)
@@ -21,6 +22,13 @@
 - 深拷贝 & 浅拷贝
 - [检测数据类型的方法](./js/index.js)
 - [如何让 obj== 1 && obj == 2 && obj == 3](./js/index.js)
+- new关键字
+- bind call apply
+    使用场景 ，借用方法（我想做饭，我没有锅，我找邻居借个锅）
+    - Object.prototype.toString.apply(a)
+    - Array.prototype.slice.apply(nodeList)
+    - Math.max.apply(Math, arr)
+- 
 
 
 ## ts

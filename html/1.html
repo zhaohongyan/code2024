@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>如何渲染一万条数据</h1>
+		<p>增加一万个div 19086ms</p>
+		<p>requestAnimationFrame 20961ms</p>
+
+		<button onclick="alert('111')">点击</button>
+		<div id="root"></div>
+
+		<script>
+			console.log("start", Date.now());
+			const startTime = Date.now();
+			const MAX_COUNT = 100;
+			const COUNT = 10;
+			let start = 0;
+			let end = start + COUNT;
+			let timer;
+
+			const arr = new Array(MAX_COUNT)
+				.fill({})
+				.map((item, index) => ({ id: index }));
+			const rootDOM = document.getElementById("root");
+			const fn = () => {
+				let frag = document.createDocumentFragment();
+				for (; start < end; start++) {
+					const item = document.createElement("div");
+					item.innerHTML = start;
+					frag.appendChild(item);
+				}
+				rootDOM.appendChild(frag);
+
+				if (end < MAX_COUNT) {
+					start = end;
+					end = Math.min(start + COUNT, MAX_COUNT);
+					requestAnimationFrame(fn);
+
+					// setTimeout(() => {
+					// 	fn();
+					// }, 16);
+				} else {
+					// clearTimeout(timer);
+					console.log("end", Date.now());
+					console.log("end", Date.now() - startTime);
+				}
+			};
+            fn()
+			requestAnimationFrame(fn);
+		</script>
+	</body>
+</html>

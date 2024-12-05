@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>发布订阅模式应用</title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			.header {
+				background-color: pink;
+				text-align: center;
+				height: 40px;
+				line-height: 40px;
+			}
+			.content {
+				display: flex;
+				height: 500px;
+			}
+			.content .left {
+				width: 200px;
+				background-color: skyblue;
+			}
+			.content .right {
+				flex: 1;
+				background-color: yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header">header</div>
+		<div class="content">
+			<ul class="left">
+				<li>首页</li>
+				<li>用户管理</li>
+				<li>权限管理</li>
+				<li>新闻管理</li>
+			</ul>
+			<div class="right">right</div>
+		</div>
+
+		<script>
+			var PubSub = {
+				message: {},
+				subscribe(type, cb) {
+					if (!this.message[type]) {
+						this.message[type] = [cb];
+					} else {
+						this.message[type].push(cb);
+					}
+				},
+				unsubscribe(type, cb) {
+					if (!this.message[type]) return;
+					if (!cb) {
+						this.message[type] = [];
+					}
+					this.message[type] = this.message[type].filter((item) => item !== cb);
+				},
+				publish(type, data) {
+					if (!this.message[type]) return;
+
+					this.message[type].forEach((cb) => cb(data));
+				},
+			};
+
+			const test1 = (data) => {
+				document.querySelector(".header").innerHTML = data;
+			};
+
+			const test2 = (data) => {
+				document.querySelector(".right").innerHTML = data;
+			};
+
+			PubSub.subscribe("updateData", test1);
+			PubSub.subscribe("updateData", test2);
+
+			const oli = document.querySelectorAll(".left li");
+			for (let index = 0; index < oli.length; index++) {
+				oli[index].onclick = function () {
+					PubSub.publish("updateData", this.innerHTML);
+				};
+			}
+		</script>
+	</body>
+</html>

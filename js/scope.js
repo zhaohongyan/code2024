@@ -1,26 +1,22 @@
-// let scope = 'global'
-
+var scope = 'global'
 // function checkScope () {
-//     let scope = 'local'
-
+//     var scope = 'local'
 //     function fn() {
 //         return scope
 //     }
 //     return fn()
 // }
-
 // console.log(checkScope())
 
-// function checkScope () {
-//     let scope = 'local'
+function checkScope () {
+    var scope = 'local'
+    function fn() {
+        return scope
+    }
+    return fn
+}
 
-//     function fn() {
-//         return scope
-//     }
-//     return fn
-// }
-
-// console.log(checkScope()())
+console.log(checkScope()())
 
 // 题目1：
 // var n = 100;
@@ -57,10 +53,10 @@
 // console.log(n);
 
 // 题目4:
-var a = 100;
-function foo() {
-	console.log(a);
-	return;
-	var a = 100;
-}
-foo();
+// var a = 100;
+// function foo() {
+// 	console.log(a);
+// 	return;
+// 	var a = 100;
+// }
+// foo();
