@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			#outer {
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				padding: 50px;
+				box-sizing: border-box;
+			}
+			#center {
+				width: 100px;
+				height: 100px;
+				background-color: blue;
+				padding: 25px;
+				box-sizing: border-box;
+			}
+			#inner {
+				width: 50px;
+				height: 50px;
+				background-color: green;
+			}
+		</style>
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="outer">
+			<div id="center">
+				<div id="inner">inner</div>
+			</div>
+		</div>
+
+		<script>
+			const outer = document.getElementById("outer");
+			const center = document.getElementById("center");
+			const inner = document.getElementById("inner");
+			// 事件捕获阶段
+			// outer.onclick = function () {
+			// 	console.log("outer");
+			// };
+			// center.onclick = function () {
+			// 	console.log("center");
+			// };
+			// inner.onclick = function () {
+			// 	console.log("inner");
+			// };
+			// // 这样写会覆盖
+			// inner.onclick = function () {
+			// 	console.log("inner 2");
+			// };
+
+			// 事件冒泡阶段, useCapture
+			// 第三个参数useCapture=false, 使用冒泡的事件流， inner center  outer
+			// 第三个参数useCapture=true, 使用捕获的事件流， outer center inner
+			// outer.addEventListener('click', () => {
+			//     console.log('outer');
+			// },false)
+			// center.addEventListener('click', () => {
+			//     console.log('center');
+			// }, true)
+
+			inner.addEventListener(
+				"click",
+				() => {
+					console.log("inner");
+					new Promise((resolve, reject) => {
+						resolve("微任务");
+					}).then((res) => {
+						console.log("res", res);
+					});
+				},
+				true
+			);
+			// 这样写不会覆盖
+			inner.addEventListener(
+				"click",
+				() => {
+					console.log("inner2");
+				},
+				true
+			);
+
+			// 事件捕获： 事件被定义为 从 文档根元素 一直传播到 目标元素 节点为止。
+			// 事件冒泡： 事件从 目标元素开始触发，一直向上传播到 文档根元素为止。
+		</script>
+	</body>
+</html>

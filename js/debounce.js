@@ -11,6 +11,16 @@ const debounce = (fn, delay = 500) => {
 			fn.apply(this, arguments);
 			timer = null;
 		}, delay);
+
+		// 不使用箭头函数的写法
+		// const self = this;
+		// const params = Array.prototype.slice.apply(arguments)
+		// console.log('arguments', arguments);
+		// console.log('this', this);
+		// timer = setTimeout(function () {
+		// 	fn.apply(self, params);
+		// 	timer = null;
+		// }, delay);
 	};
 };
 
@@ -19,5 +29,12 @@ function handleResize() {
 }
 
 window.addEventListener("resize", debounce(handleResize, 5000));
-// window.addEventListener("resize", handleResize);
+window.addEventListener("resize", handleResize);
 
+// 输入联想
+const input = document.getElementsByTagName("input")[0];
+function handler(e) {
+	console.log(e.target.value);
+}
+// input.oninput = handler
+input.oninput = debounce(handler, 200);

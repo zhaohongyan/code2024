@@ -42,7 +42,7 @@
 
 class Point {
 	static a = 1; // 静态属性
-
+	
 	constructor(x, y) {
 		this.x = x; // this 代表实例对象
 		this.y = y;
@@ -53,7 +53,7 @@ class Point {
 	toString() {
 		return '(' + this.x + ', ' + this.y + ')';
 	}
-
+	
 	static getName() { // 静态方法
 		return 'Emma'
 	}

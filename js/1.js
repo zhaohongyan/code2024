@@ -5,6 +5,12 @@ function deepClone(obj, hash = new WeakMap()) {
     if (obj.constructor === RegExp) {
         return new RegExp(obj)
     }
+    // if (obj instanceof Date) {
+    //     return new Date(obj)
+    // }
+    // if (obj instanceof RegExp) {
+    //     return new RegExp(obj)
+    // }
 
     if (hash.has(obj)) {
         return hash.get(obj)

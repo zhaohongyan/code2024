@@ -11,8 +11,8 @@
 //     }
 //     return o
 // }
-// const Amy1 = person('Amy', 10)
-// const Emma1 = person('Emma', 10)
+// var Amy1 = person('Amy', 10)
+// var Emma1 = person('Emma', 10)
 
 // 2. 构造函数
 // 每个实例都创建了一份属于自己的副本，造成内存浪费
@@ -23,27 +23,32 @@
 //         console.log('hi, ', this.name)
 //     }
 // }
-// const Amy2 = new Person('Amy', 10)
-// const Emma2 = new Person('Emma', 20)
+// var Amy2 = new Person('Amy', 10)
+// var Emma2 = new Person('Emma', 20)
 
 // 3. 原型
 // 原型模式解决了属性和方法的共享问题
 // 但对于引用类型的属性，各实例对象会相互影响
-// function person () {
-//     person.prototype.name = 'Emma'
-//     person.prototype.age = 30
-//     person.prototype.sayHello = function () {
-//         console.log('hi, ', this.name)
-//     }
-// }
-// const Amy3 = new Person('Amy', 30)
+// function Person() {}
+// Person.prototype.name = "Emma";
+// Person.prototype.age = 28;
+// Person.prototype.play = [1, 2, 3];
+// Person.prototype.sayName = function() {
+//   console.log(this.name); 
+// };
+
+// var Amy3 = new Person();
+// Amy3.play.push(4);
+// var Emma3 = new Person();
+
 
 // 4. 原型＋构造函数（组合模式，使用最广泛的）
 // 构造函数用于定义实例属性， 原型用于定义共享属性和方法
 // 缺点：每创建一个实例对象，原型方法都被重复定义一次
 // function Person(name, age) {
 //     this.name = name;
-//     this.age = age
+//     this.age = age;
+//     this.play = [1, 2, 3]
 // }
 // Person.prototype = {
 //     constructor: Person,
@@ -51,7 +56,10 @@
 //         console.log('hi, ', this.name)
 //     }
 // }
-// const Amy4 = new Person('Amy', 10)
+// var Amy4 = new Person('Amy', 10)
+// Amy4.play.push(4)
+// var Emma4 = new Person('Emma', 20)
+
 
 // 5. 动态原型
 // 解决了组合模式的缺点，使用if语句，使得原型方法只初始化一次
@@ -64,9 +72,9 @@
 //         }
 //     }
 // }
-// const Amy5 = new Person('Amy', 10)
+// var Amy5 = new Person('Amy', 10)
+
 // 6. 寄生构造函数, 创建对象的方式和工厂函数一致，调用方式不一样
-// 没有什么应用场景
 // function Person (name, age) {
 //     const obj = new Object();
 //     obj.name = name;
@@ -74,13 +82,13 @@
 //     obj.sayHello = function() {
 //         console.log('hi, ', this.name)
 //     }
+//     return obj
 // }
-// const Amy6 = new Person('Amy', 10);
+// var Amy6 = new Person('Amy', 10);
+
 
 // 7. 稳妥构造函数
-// 没有公共属性
-// 不使用new
-// 不使用this
+// 不使用new, 不使用this
 // function Person (name, age) {
 //     const obj = new Object()
 //     obj.name = name;
@@ -88,5 +96,6 @@
 //     obj.sayHello = function () {
 //         console.log('hi, ', name)
 //     }
+//     return obj
 // }
-// const Amy7 = Person('Amy')
+// var Amy7 = Person('Amy', 10)
